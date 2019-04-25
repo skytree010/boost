@@ -13,5 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{b7c0b2a3-3ac2-481b-b057-289f5491e4a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\NetServer">
+      <UniqueIdentifier>{472fe2d9-f1cb-4aa6-9e7e-fd2b668d8477}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="protocol.h">
+      <Filter>lib\NetServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Server.h">
+      <Filter>lib\NetServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Session.h">
+      <Filter>lib\NetServer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Boost_Session.cpp">
+      <Filter>lib\NetServer</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
