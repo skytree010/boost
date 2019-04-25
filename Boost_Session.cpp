@@ -41,6 +41,7 @@ void Boost_Session::PostSend()
 	{
 		if (!_SendBuffer.pop(Buf))
 			return;
+		_SendingBuffer.push(Buf);
 		boost::asio::async_write(_Socket, boost::asio::buffer(Buf->GetBufferptr(), Buf->GetBufferSize()),
 											boost::bind(&Boost_Session::Send_Handler, this,
 											boost::asio::placeholders::error,

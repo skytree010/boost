@@ -33,8 +33,8 @@ private:
 	boost::asio::ip::tcp::socket _Socket;
 	Boost_Server* _Server;
 	boost::circular_buffer<char> _RecvBuffer;
-	//std::deque<SendBuffer*> _SendBuffer;
 	boost::lockfree::queue<SendBuffer*> _SendBuffer;
+	boost::lockfree::queue<SendBuffer*> _SendingBuffer;
 };
 
 
