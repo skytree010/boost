@@ -126,9 +126,11 @@
     <ClInclude Include="Boost_Server.h" />
     <ClInclude Include="Boost_Session.h" />
     <ClInclude Include="protocol.h" />
+    <ClInclude Include="SendBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boost_Session.cpp" />
+    <ClCompile Include="SendBuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

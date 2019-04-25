@@ -5,26 +5,20 @@ Boost_Session::Boost_Session(__int64 SessionID, boost::asio::io_service& io_serv
 	, _SessionID(SessionID)
 	, _Server(Server)
 	, _RecvBuffer(MAX_RECV_BUFFER_SIZE)
+	, _SendBuffer(100)
 {
-	SendBuf = new char*[MAX_SEND_BUFFER_COUNT];
-	for (int i = 0; i < MAX_SEND_BUFFER_COUNT; i++)
-	{
-		SendBuf[i] = new char[MAX_SEND_BUFFER_SIZE];
-	}
+	_IoCount = 0;
+	_SessionID = 0;
 }
 
 Boost_Session::~Boost_Session()
 {
-	for (int i = 0; i < MAX_SEND_BUFFER_COUNT; i++)
-	{
-		delete[] SendBuf[i];
-	}
-	delete[] SendBuf;
+
 }
 
-int Boost_Session::Init()
+int Boost_Session::Init(uint64_t SessionID)
 {
-
+	_SessionID = SessionID;
 }
 
 boost::asio::ip::tcp::socket& Boost_Session::GetSocket()
@@ -32,9 +26,27 @@ boost::asio::ip::tcp::socket& Boost_Session::GetSocket()
 	return _Socket;
 }
 
+void Boost_Session::Send(SendBuffer& Buf)
+{
+	_SendBuffer.push(&Buf);
+	PostSend();
+}
+
 void Boost_Session::PostSend()
 {
-
+	SendBuffer* Buf;
+	if (_SendBuffer.empty())
+		return;
+	while (1)
+	{
+		if (!_SendBuffer.pop(Buf))
+			return;
+		boost::asio::async_write(_Socket, boost::asio::buffer(Buf->GetBufferptr(), Buf->GetBufferSize()),
+											boost::bind(&Boost_Session::Send_Handler, this,
+											boost::asio::placeholders::error,
+											boost::asio::placeholders::bytes_transferred)
+								);
+	}
 }
 
 void Boost_Session::PostRecv()
