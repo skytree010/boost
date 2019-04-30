@@ -30,7 +30,7 @@
     <ClInclude Include="Boost_Session.h">
       <Filter>lib\NetServer</Filter>
     </ClInclude>
-    <ClInclude Include="SendBuffer.h">
+    <ClInclude Include="Packet.h">
       <Filter>lib\NetServer</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClCompile Include="Boost_Session.cpp">
       <Filter>lib\NetServer</Filter>
     </ClCompile>
-    <ClCompile Include="SendBuffer.cpp">
+    <ClCompile Include="Packet.cpp">
       <Filter>lib\NetServer</Filter>
     </ClCompile>
   </ItemGroup>
